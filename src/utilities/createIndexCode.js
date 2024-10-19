@@ -1,7 +1,7 @@
-import _ from 'lodash';
+import _ from "lodash";
 
 const safeVariableName = (fileName) => {
-  const indexOfDot = fileName.indexOf('.');
+  const indexOfDot = fileName.indexOf(".");
 
   if (indexOfDot === -1) {
     return fileName;
@@ -14,10 +14,10 @@ const buildExportBlock = (files) => {
   let importBlock;
 
   importBlock = _.map(files, (fileName) => {
-    return 'export { default as ' + safeVariableName(fileName) + ' } from \'./' + fileName + '\';';
+    return "export * from './" + fileName + "';";
   });
 
-  importBlock = importBlock.join('\n');
+  importBlock = importBlock.join("\n");
 
   return importBlock;
 };
@@ -26,29 +26,31 @@ export default (filePaths, options = {}) => {
   let code;
   let configCode;
 
-  code = '';
-  configCode = '';
+  code = "";
+  configCode = "";
 
   if (options.banner) {
-    const banners = _.isArray(options.banner) ? options.banner : [options.banner];
+    const banners = _.isArray(options.banner)
+      ? options.banner
+      : [options.banner];
 
     banners.forEach((banner) => {
-      code += banner + '\n';
+      code += banner + "\n";
     });
 
-    code += '\n';
+    code += "\n";
   }
 
   if (options.config && _.size(options.config) > 0) {
-    configCode += ' ' + JSON.stringify(options.config);
+    configCode += " " + JSON.stringify(options.config);
   }
 
-  code += '// @create-index' + configCode + '\n\n';
+  code += "// @create-index" + configCode + "\n\n";
 
   if (filePaths.length) {
     const sortedFilePaths = filePaths.sort();
 
-    code += buildExportBlock(sortedFilePaths) + '\n\n';
+    code += buildExportBlock(sortedFilePaths) + "\n\n";
   }
 
   return code;
