@@ -55,5 +55,5 @@
     "lint": "NODE_ENV=development eslint ./src ./test",
     "test": "NODE_ENV=development mocha --require @babel/register"
   },
-  "version": "0.0.0-development"
+  "version": "0.0.0"
 }
