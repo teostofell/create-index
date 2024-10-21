@@ -1,12 +1,14 @@
-import _ from "lodash";
+import _, { chunk } from "lodash";
 
 const safeVariableName = (fileName) => {
-  const indexOfDot = fileName.indexOf(".");
+  const chunks = fileName.split(".");
 
-  if (indexOfDot === -1) {
+  console.log(fileName, chunks);
+
+  if (chunks.length <= 1) {
     return fileName;
   } else {
-    return fileName.slice(0, indexOfDot);
+    return chunks.slice(0, chunks.length - 1).join(".");
   }
 };
 
@@ -14,7 +16,7 @@ const buildExportBlock = (files) => {
   let importBlock;
 
   importBlock = _.map(files, (fileName) => {
-    return "export * from './" + fileName + "';";
+    return "export * from './" + safeVariableName(fileName) + "';";
   });
 
   importBlock = importBlock.join("\n");

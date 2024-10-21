@@ -1,4 +1,4 @@
 // @create-index {"ignore":["/bar.js$/"]}
 
-export * from './foo.js';
+export * from './foo';
 

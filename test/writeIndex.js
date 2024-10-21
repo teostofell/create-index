@@ -33,7 +33,7 @@ describe("writeIndex()", () => {
 // @create-index
 
 export * from './bar';
-export * from './foo.js';
+export * from './foo';
     `)
     );
   });
@@ -41,7 +41,7 @@ export * from './foo.js';
   it("creates index with config in target directory", () => {
     const indexFilePath = path.resolve(fixturesPath, "with-config/index.js");
     // eslint-disable-next-line quotes
-    const ignoredExportLine = `export * from './bar.js';`;
+    const ignoredExportLine = `export * from './bar';`;
 
     appendToFile(indexFilePath, ignoredExportLine);
     expect(readFile(indexFilePath).includes(ignoredExportLine)).to.equal(true);
@@ -53,7 +53,7 @@ export * from './foo.js';
       codeExample(`
 // @create-index {"ignore":["/bar.js$/"]}
 
-export * from './foo.js';
+export * from './foo';
     `)
     );
   });
