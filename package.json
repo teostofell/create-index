@@ -39,7 +39,7 @@
   ],
   "license": "BSD-3-Clause",
   "main": "./dist/index.js",
-  "name": "create-index",
+  "name": "@teostofell/create-index",
   "repository": {
     "type": "git",
     "url": "https://github.com/gajus/create-index"

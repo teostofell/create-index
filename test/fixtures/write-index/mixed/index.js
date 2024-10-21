@@ -1,5 +1,5 @@
 // @create-index
 
 export * from './bar';
-export * from './foo.js';
+export * from './foo';
 

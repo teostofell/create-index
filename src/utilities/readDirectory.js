@@ -11,7 +11,7 @@ const hasNoExtension = (fileName) => {
 };
 
 const isSafeName = (fileName) => {
-  return /^[_a-z][\w.]*$/i.test(fileName);
+  return /^[_a-z][-\w.]*$/i.test(fileName);
 };
 
 const stripExtension = (fileName) => {

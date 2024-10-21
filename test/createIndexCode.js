@@ -45,7 +45,7 @@ export * from './foo';
         codeExample(`
 // @create-index
 
-export * from './foo.js';
+export * from './foo';
       `)
       );
     });
